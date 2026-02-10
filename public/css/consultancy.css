@@ -1,0 +1,49 @@
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.05);
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.badge {
+    font-size: 0.75em;
+    font-weight: 600;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.pagination .page-link {
+    border: none;
+    margin: 0 2px;
+    border-radius: 8px;
+    color: #667eea;
+    font-weight: 500;
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(135deg, #797f9c 0%, #b485e2 100%);
+    border: none;
+}
+
+.collapse-row {
+    background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+}

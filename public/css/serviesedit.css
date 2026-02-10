@@ -1,0 +1,344 @@
+
+        /* Custom Styles */
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%) !important;
+        }
+
+        .card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .form-control-lg {
+            padding: 0.75rem 1rem;
+            font-size: 1.1rem;
+        }
+
+        .input-group-text {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-right: none;
+            color: #6c757d;
+        }
+
+        .btn {
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-lg {
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .alert {
+            border-radius: 10px;
+            border: none;
+            padding: 1rem 1.25rem;
+        }
+
+        .table-borderless td {
+            padding: 1rem 0.5rem;
+            vertical-align: middle;
+        }
+
+        .faq-row {
+            background: rgba(0, 123, 255, 0.02);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .transition {
+            transition: transform 0.3s ease;
+        }
+
+        [data-bs-toggle="collapse"]:not(.collapsed) .bi-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .form-text {
+            font-size: 0.875rem;
+            color: #6c757d;
+            margin-top: 0.5rem;
+        }
+
+        .card-header {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Enhanced Date Picker Styles */
+        .date-picker-wrapper {
+            position: relative;
+        }
+
+        .date-input {
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .date-input:focus {
+            cursor: pointer;
+        }
+
+        /* Custom Flatpickr Styles */
+        .flatpickr-calendar {
+            background: #ffffff;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            font-family: inherit;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+
+        .flatpickr-calendar.open {
+            animation: slideInDown 0.3s ease;
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .flatpickr-months {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .flatpickr-month {
+            color: white;
+            fill: white;
+        }
+
+        .flatpickr-current-month {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .flatpickr-prev-month,
+        .flatpickr-next-month {
+            color: white;
+            fill: white;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .flatpickr-prev-month:hover,
+        .flatpickr-next-month:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .flatpickr-weekdays {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+        }
+
+        .flatpickr-weekday {
+            color: #6c757d;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .flatpickr-days {
+            padding: 1rem;
+            background: white;
+        }
+
+        .flatpickr-day {
+            border-radius: 8px;
+            border: none;
+            color: #495057;
+            font-weight: 500;
+            margin: 2px;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .flatpickr-day:hover {
+            background: #e3f2fd;
+            color: #007bff;
+            transform: scale(1.05);
+        }
+
+        .flatpickr-day.selected {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .flatpickr-day.startRange,
+        .flatpickr-day.endRange {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        .flatpickr-day.inRange {
+            background: rgba(0, 123, 255, 0.1);
+            color: #007bff;
+            border-radius: 0;
+        }
+
+        .flatpickr-day.today {
+            border: 2px solid #007bff;
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        .flatpickr-day.today.selected {
+            border: 2px solid #ffffff;
+        }
+
+        .flatpickr-day.prevMonthDay,
+        .flatpickr-day.nextMonthDay {
+            color: #ced4da;
+        }
+
+        .flatpickr-day.disabled {
+            color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        /* Multiple months styling */
+        .flatpickr-calendar.hasTime.noCalendar {
+            width: auto;
+        }
+
+        .flatpickr-calendar.multiMonth .flatpickr-days {
+            border-right: 1px solid #e9ecef;
+        }
+
+        .flatpickr-calendar.multiMonth .flatpickr-days:last-child {
+            border-right: none;
+        }
+
+        /* Animation for form sections */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .btn-lg {
+                padding: 0.5rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .form-control-lg {
+                padding: 0.5rem 0.75rem;
+                font-size: 1rem;
+            }
+
+            .d-flex.justify-content-between {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .d-flex.justify-content-between>div {
+                text-align: center;
+            }
+
+            .flatpickr-calendar {
+                width: 100% !important;
+                max-width: 320px;
+            }
+
+            .flatpickr-calendar.multiMonth .flatpickr-days {
+                border-right: none;
+                border-bottom: 1px solid #e9ecef;
+            }
+        }
+
+        /* Loading state */
+        .btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .btn.loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Focus states for accessibility */
+        .btn:focus,
+        .form-control:focus,
+        .form-select:focus {
+            outline: 2px solid #007bff;
+            outline-offset: 2px;
+        }
