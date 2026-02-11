@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'check.token' => App\Http\Middleware\CheckTokenMiddleware::class,
         ]);
         $middleware->append(App\Http\Middleware\LanguageMiddleware::class);
+        $middleware->append(App\Http\Middleware\SecurityHeadersMiddleware::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
