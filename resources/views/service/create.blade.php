@@ -361,8 +361,9 @@
         </div>
     </div>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <link rel="stylesheet" href="{{ asset('cdn/css/flatpickr.min.css') }}">
+    <script src="{{ asset('cdn/js/flatpickr.js') }}"></script>
 
     <script src="{{ asset('js/services.js') }}"></script>
 @endsection

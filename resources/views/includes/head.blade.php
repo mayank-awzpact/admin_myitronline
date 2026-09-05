@@ -1,23 +1,44 @@
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ config('app.name') }}</title>
 <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/my_icon.png') }}">
+<!-- Bootstrap CSS -->
+<link href="{{ asset('cdn/css/bootstrap.min.css') }}" rel="stylesheet">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link href="{{ asset('cdn/css/bootstrap-icons.min.css') }}" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="{{ asset('cdn/css/all.min.css') }}" rel="stylesheet">
+
+<!-- Summernote CSS -->
+<link href="{{ asset('cdn/css/summernote-lite.min.css') }}" rel="stylesheet">
+
+<!-- Flatpickr CSS -->
+<link href="{{ asset('cdn/css/flatpickr.min.css') }}" rel="stylesheet">
+
+<!-- Select2 CSS -->
+<link href="{{ asset('cdn/css/select2.min.css') }}" rel="stylesheet">
+
+<!-- Inter Font (Local Version Recommended) -->
+<link href="{{ asset('cdn/css/inter.css') }}" rel="stylesheet">
 
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+<!-- jQuery -->
+<script src="{{ asset('cdn/js/jquery-3.7.1.min.js') }}"></script>
+
+<!-- Bootstrap JS -->
+<script src="{{ asset('cdn/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Flatpickr JS -->
+<script src="{{ asset('cdn/js/flatpickr.js') }}"></script>
+
+<!-- Select2 JS -->
+<script src="{{ asset('cdn/js/select2.min.js') }}"></script>
+
+<!-- Summernote JS -->
+<script src="{{ asset('cdn/js/summernote-lite.min.js') }}"></script>
+
 
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bulkindex.css') }}">

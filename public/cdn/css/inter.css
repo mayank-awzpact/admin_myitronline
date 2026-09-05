@@ -1,0 +1,4 @@
+/* Inter-style font stack - CSP-safe, no external requests */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}

@@ -363,7 +363,8 @@
                 </div>
             </div>
             <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="{{ asset('cdn/js/chart.js') }}"></script>
+
 
             {{-- ================= CORRECTED SCRIPT ================= --}}
             @if (isset($paymentStats))

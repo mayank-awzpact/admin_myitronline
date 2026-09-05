@@ -7,9 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('img/logo/my_icon.png') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+   <link href="{{ asset('cdn/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('cdn/css/all.min.css') }}">
+    <link href="{{ asset('cdn/css/inter.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 </head>
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="{{ asset('cdn/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
 </html>

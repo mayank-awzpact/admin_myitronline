@@ -70,8 +70,9 @@
         </nav>
     </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('cdn/js/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('cdn/js/sweetalert2.min.js') }}"></script>
+
 <script>
     $(document).ready(function() {
         $(".delete-btn").click(function() {

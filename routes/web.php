@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MyitrQuizController;
@@ -29,7 +30,7 @@ Route::get('/mail-test', function () {
     });
 
     return 'Email sent!';
-});
+})->middleware('throttle:10,1');
 
 Route::post('/send-test-mail', function (Request $request) {
     $request->validate([
@@ -52,15 +53,14 @@ Route::post('/send-test-mail', function (Request $request) {
             'error' => $e->getMessage(),
         ], 500);
     }
-});
+})->middleware('throttle:sensitive');
 
 
-Volt::route('administrator/login', 'pages.auth.login')->name('login');
 Route::get('/', function () {
     return redirect()->route('login');
 });
 
-    Route::prefix('administrator')->middleware(['auth'])->group(function () {
+    Route::prefix('administrator')->middleware(['auth', 'throttle:admin'])->group(function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -97,8 +97,8 @@ Route::get('/', function () {
             Route::get('/edit/{id}', [BulkMailController::class, 'edit'])->name('bulkmail.edit');
             Route::put('/update/{id}', [BulkMailController::class, 'update'])->name('bulkmail.update');
             Route::delete('/delete/{id}', [BulkMailController::class, 'destroy'])->name('bulkmail.destroy');
-            Route::POST('/bulk_mail_send', [BulkMailController::class, 'bulk_mail_send'])->name('bulkmail.bulk_mail_send');
-            Route::POST('/multiple-bulk-mail-send', [BulkMailController::class, 'sendBulk'])->name('bulkmail.send.bulk_mail');
+            Route::POST('/bulk_mail_send', [BulkMailController::class, 'bulk_mail_send'])->name('bulkmail.bulk_mail_send')->middleware('throttle:sensitive');
+            Route::POST('/multiple-bulk-mail-send', [BulkMailController::class, 'sendBulk'])->name('bulkmail.send.bulk_mail')->middleware('throttle:sensitive');
 
         });
 
@@ -115,14 +115,14 @@ Route::get('/', function () {
     Route::get('/', [WhatsAppController::class, 'showForm'])->name('whatsapp.index');
     // Route::post('/send', [WhatsAppController::class, 'sendMessages'])->name('whatsapp.send');
     // Route::post('/whatsapp/send', [WhatsAppController::class, 'sendMessages'])->name('whatsapp.send');
-    Route::post('/whatsapp/send', [WhatsAppController::class, 'sendMessages'])->name('whatsapp.send');
+    Route::post('/whatsapp/send', [WhatsAppController::class, 'sendMessages'])->name('whatsapp.send')->middleware('throttle:sensitive');
 
 
 });
 
 Route::prefix('whatsapp')->group(function () {
     Route::get('/', [WhatsAppCsvController::class, 'showForm'])->name('whatsapp.index');
-    Route::post('/send', [WhatsAppCsvController::class, 'sendFromCsv'])->name('whatsapp.csv.send');
+    Route::post('/send', [WhatsAppCsvController::class, 'sendFromCsv'])->name('whatsapp.csv.send')->middleware('throttle:sensitive');
 });
 
     //quiz work
@@ -191,7 +191,7 @@ Route::delete('delete-quiz-result/{id}', [MyitrQuizController::class, 'delete_qu
     Route::post('/logout', function () {
         Auth::logout();
         return redirect()->route('login');
-    })->middleware('throttle:5,1')->name('logout');
+    })->middleware('throttle:10,1')->name('logout');
 });
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {

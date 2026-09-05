@@ -31,14 +31,12 @@ class CheckTokenMiddleware
         }
     
         $token = $matches[1]; // Extracted token from "Bearer <token>"
-    
-        // Match with your static token
-        if ($token == 'UJdDajttAwL3niOx0Nlou4oqWuAV8jY0FYi0O3KEmkQcl3EHqhIzfZuBMzIbGtok') {
-            // Token matched, allow request to proceed
-            return $next($request);
+        $validToken = config('services.api_token') ?: env('API_TOKEN');
+
+        if (empty($validToken) || ! hash_equals((string) $validToken, (string) $token)) {
+            return response()->json(['error' => 'Invalid Token'], 401);
         }
-    
-        // Token did not match
-        return response()->json(['error' => 'Invalid Token'], 401);
+
+        return $next($request);
     }
 }

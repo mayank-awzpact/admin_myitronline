@@ -33,7 +33,7 @@
         <button type="submit" class="btn btn-success">Send WhatsApp Messages</button>
     </form>
 </div>
-    <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+     <script src="{{ asset('cdn/ckeditor/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace('message');
     </script>

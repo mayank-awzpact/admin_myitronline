@@ -40,37 +40,75 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('services.*') ? 'active' : '' }}"
-                            href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-gear"></i>
-                            Services
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('services.index') }}"><i class="bi bi-gear"></i>
-                                    Services</a></li>
-                            <li><a class="dropdown-item" href="{{ route('services.servicemeta') }}"><i
-                                        class="bi bi-bookmark-plus"></i> Services Meta</a></li>
-                        </ul>
-                    </li>
+                   <li class="nav-item">
+    <a class="nav-link d-flex justify-content-between align-items-center {{ request()->routeIs('services.*') ? 'active' : '' }}"
+       data-bs-toggle="collapse"
+       href="#servicesMenu"
+       role="button"
+       aria-expanded="{{ request()->routeIs('services.*') ? 'true' : 'false' }}">
+        <span><i class="bi bi-gear"></i> Services</span>
+        <i class="bi bi-chevron-down"></i>
+    </a>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->is('order/*') ? 'active' : '' }}"
-                            href="#" id="paymentDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-currency-rupee"></i>
-                            Payment
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('order.consultancy') }}"><i
-                                        class="bi bi-wallet2"></i> Consultation Payment</a></li>
-                            <li><a class="dropdown-item" href="{{ route('order.index') }}"><i class="bi bi-basket"></i>
-                                    Orders</a></li>
-                            <li><a class="dropdown-item" href="{{ route('order.oldorder') }}"><i
-                                        class="bi bi-archive"></i> Old Payment</a></li>
-                            <li><a class="dropdown-item" href="{{ route('order.form16_payment') }}"><i
-                                        class="bi bi-file-text"></i> Form16 Payment</a></li>
-                        </ul>
-                    </li>
+    <div class="collapse {{ request()->routeIs('services.*') ? 'show' : '' }}" id="servicesMenu">
+        <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('services.index') ? 'active' : '' }}"
+                   href="{{ route('services.index') }}">
+                    <i class="bi bi-gear"></i> Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('services.servicemeta') ? 'active' : '' }}"
+                   href="{{ route('services.servicemeta') }}">
+                    <i class="bi bi-bookmark-plus"></i> Services Meta
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+
+                    <li class="nav-item">
+    <a class="nav-link d-flex justify-content-between align-items-center {{ request()->is('order/*') ? 'active' : '' }}"
+       data-bs-toggle="collapse"
+       href="#paymentMenu"
+       role="button"
+       aria-expanded="{{ request()->is('order/*') ? 'true' : 'false' }}">
+        <span><i class="bi bi-currency-rupee"></i> Payment</span>
+        <i class="bi bi-chevron-down"></i>
+    </a>
+
+    <div class="collapse {{ request()->is('order/*') ? 'show' : '' }}" id="paymentMenu">
+        <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('order.consultancy') ? 'active' : '' }}"
+                   href="{{ route('order.consultancy') }}">
+                    <i class="bi bi-wallet2"></i> Consultation Payment
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('order.index') ? 'active' : '' }}"
+                   href="{{ route('order.index') }}">
+                    <i class="bi bi-basket"></i> Orders
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('order.oldorder') ? 'active' : '' }}"
+                   href="{{ route('order.oldorder') }}">
+                    <i class="bi bi-archive"></i> Old Payment
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('order.form16_payment') ? 'active' : '' }}"
+                   href="{{ route('order.form16_payment') }}">
+                    <i class="bi bi-file-text"></i> Form16 Payment
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
 
                     <li class="nav-item">
                         <a href="{{ route('spin.index') }}"
@@ -120,17 +158,28 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {{ request()->routeIs('users.index') ? 'active' : '' }}"
-                            href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
-                            <i class="bi bi-people"></i>
-                            User Management
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('users.index') }}"><i
-                                        class="bi bi-person-plus"></i> Add User</a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item">
+    <a class="nav-link d-flex justify-content-between align-items-center {{ request()->routeIs('users.*') ? 'active' : '' }}"
+       data-bs-toggle="collapse"
+       href="#userMenu"
+       role="button"
+       aria-expanded="{{ request()->routeIs('users.*') ? 'true' : 'false' }}">
+        <span><i class="bi bi-people"></i> User Management</span>
+        <i class="bi bi-chevron-down"></i>
+    </a>
+
+    <div class="collapse {{ request()->routeIs('users.*') ? 'show' : '' }}" id="userMenu">
+        <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('users.index') ? 'active' : '' }}"
+                   href="{{ route('users.index') }}">
+                    <i class="bi bi-person-plus"></i> Add User
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
                 </ul>
             </div>
         </nav>
@@ -149,35 +198,49 @@
 
                 <div class="navbar-right">
                     @auth
-                        <div class="nav-item dropdown user-dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle"></i>
-                                <span>{{ Auth::user()->name }}</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li class="dropdown-item-text">
-                                    <strong>{{ Auth::user()->name }}</strong><br>
-                                    <small class="text-muted">{{ Auth::user()->email }}</small>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Edit Profile</a>
-                                </li>
-                                {{-- <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li> --}}
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            <i class="bi bi-box-arrow-right"></i> Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
+                      <div class="nav-item user-dropdown position-relative">
+
+    <a class="nav-link d-flex align-items-center justify-content-between"
+       data-bs-toggle="collapse"
+       href="#userProfileMenu"
+       role="button"
+       id="userToggle"
+       aria-expanded="false">
+
+        <span>
+            <i class="bi bi-person-circle"></i>
+            {{ Auth::user()->name }}
+        </span>
+
+        <i class="bi bi-chevron-down small"></i>
+    </a>
+
+    <div class="collapse position-absolute end-0 mt-2 shadow bg-white rounded p-3"
+         id="userProfileMenu"
+         style="min-width:220px; z-index:999;">
+
+        <div class="mb-2">
+            <strong>{{ Auth::user()->name }}</strong><br>
+            <small class="text-muted">{{ Auth::user()->email }}</small>
+        </div>
+
+        <hr>
+
+        <a class="btn btn-sm btn-outline-primary w-100 mb-2" href="#">
+            <i class="bi bi-person"></i> Edit Profile
+        </a>
+
+        <form method="POST" action="{{ route('logout') }}" id="logoutForm">
+            @csrf
+            <button type="submit" class="btn btn-sm btn-outline-danger w-100">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </button>
+        </form>
+
+    </div>
+</div>
+
+
                     @endauth
                     @guest
                         <a class="nav-link" href="{{ route('administrator.login') }}">Login</a>
@@ -192,13 +255,44 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+   <script src="{{ asset('cdn/js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ asset('cdn/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('cdn/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('cdn/js/select2.min.js') }}"></script>
+    <script src="{{ asset('cdn/js/flatpickr.js') }}"></script>
+
 
     <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const userMenu = document.getElementById('userProfileMenu');
+    const userToggle = document.getElementById('userToggle');
+    const logoutForm = document.getElementById('logoutForm');
+
+    // Toggle manually for safety
+    userToggle.addEventListener('click', function () {
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(userMenu);
+        bsCollapse.toggle();
+    });
+
+    // Close on outside click
+    document.addEventListener('click', function (event) {
+        if (!userToggle.contains(event.target) && !userMenu.contains(event.target)) {
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(userMenu);
+            bsCollapse.hide();
+        }
+    });
+
+    // Hide before logout
+    logoutForm.addEventListener('submit', function () {
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(userMenu);
+        bsCollapse.hide();
+    });
+
+});
+</script>
+
 </body>
 
 </html>
