@@ -20,8 +20,14 @@ class AppServiceProvider extends ServiceProvider
     $limit = (int) env('RATE_LIMIT_PER_MINUTE', 10);
     $limit = $limit > 0 ? $limit : 10;
 
-    RateLimiter::for('api', function (Request $request) use ($limit) {
-        return Limit::perMinute($limit)->by($request->user()?->id ?: $request->ip());
+    // The 'api' limiter now covers every route in routes/api.php, so it needs enough
+    // headroom for a normal page load on the storefront (several calls per view).
+    // The tight limits stay on the auth / OTP endpoints below.
+    $apiLimit = (int) env('API_RATE_LIMIT_PER_MINUTE', 60);
+    $apiLimit = $apiLimit > 0 ? $apiLimit : 60;
+
+    RateLimiter::for('api', function (Request $request) use ($apiLimit) {
+        return Limit::perMinute($apiLimit)->by($request->user()?->id ?: $request->ip());
     });
 
     RateLimiter::for('login', function (Request $request) use ($limit) {
@@ -34,6 +40,21 @@ class AppServiceProvider extends ServiceProvider
 
     RateLimiter::for('sensitive', function (Request $request) use ($limit) {
         return Limit::perMinute($limit)->by($request->user()?->id ?: $request->ip());
+    });
+
+    // Guard for the endpoints that actually send a mail (signup OTP, resend OTP,
+    // forgot password). Keyed by the target email as well as the IP: the abuse in
+    // storage/logs/mail.log fired repeat OTPs at a single address on 2026-08-30 and
+    // 2026-09-05, which an IP-only limit would not have stopped.
+    RateLimiter::for('otp', function (Request $request) {
+        $email = strtolower(trim((string) $request->input('email')));
+        $target = $email !== '' ? 'mail:' . $email : 'ip:' . $request->ip();
+
+        return [
+            Limit::perMinute(5)->by('otp-ip:' . $request->ip()),
+            Limit::perMinute(2)->by('otp-target:' . $target),
+            Limit::perDay(20)->by('otp-target-day:' . $target),
+        ];
     });
 
 Event::listen(MessageSending::class, function (MessageSending $event) {

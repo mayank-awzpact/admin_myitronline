@@ -5,12 +5,17 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
 Route::middleware('guest', 'throttle:login')->group(function () {
-    Volt::route('administrator/register', 'pages.auth.register')
-        ->name('register');
+    // Registered only when ADMIN_REGISTRATION_ENABLED=true. Left open, anyone could
+    // create an account here and be logged straight into the admin dashboard.
+    // New admins are added from User Management instead.
+    if (config('app.admin_registration_enabled')) {
+        Volt::route('administrator/register', 'pages.auth.register')
+            ->name('register');
+    }
 
         Volt::route('administrator/login', 'pages.auth.login')
         ->name('login');
-    
+
 
     Volt::route('forgot-password', 'pages.auth.forgot-password')
         ->name('password.request');

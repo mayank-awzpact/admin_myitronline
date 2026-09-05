@@ -13,6 +13,14 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+
+        // Laravel 11 ships the `api` group without throttling, so every route in
+        // routes/api.php was unlimited - that is how a bot fired repeat signups
+        // seconds apart (see storage/logs/mail.log, 2026-08-30 and 2026-09-05).
+        // Tune with API_RATE_LIMIT_PER_MINUTE; auth/OTP routes add tighter limits.
+        $middleware->api(prepend: [
+            \Illuminate\Routing\Middleware\ThrottleRequests::class . ':api',
+        ]);
         $middleware->alias([
             'check.token' => App\Http\Middleware\CheckTokenMiddleware::class,
         ]);

@@ -143,6 +143,40 @@
                     </li> --}}
 
                     <li class="nav-item">
+    <a class="nav-link d-flex justify-content-between align-items-center {{ request()->routeIs('events.*') ? 'active' : '' }}"
+       data-bs-toggle="collapse"
+       href="#eventsMenu"
+       role="button"
+       aria-expanded="{{ request()->routeIs('events.*') ? 'true' : 'false' }}">
+        <span><i class="bi bi-calendar-event"></i> Office Events</span>
+        <i class="bi bi-chevron-down"></i>
+    </a>
+
+    <div class="collapse {{ request()->routeIs('events.*') ? 'show' : '' }}" id="eventsMenu">
+        <ul class="nav flex-column ms-3">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('events.index') && !request('trashed') ? 'active' : '' }}"
+                   href="{{ route('events.index') }}">
+                    <i class="bi bi-list-ul"></i> All Events
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('events.create') ? 'active' : '' }}"
+                   href="{{ route('events.create') }}">
+                    <i class="bi bi-plus-circle"></i> Add Event
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('events.index') && request('trashed') ? 'active' : '' }}"
+                   href="{{ route('events.index', ['trashed' => 1]) }}">
+                    <i class="bi bi-trash"></i> Trashed Events
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+
+                    <li class="nav-item">
                         <a href="{{ route('form16.index') }}"
                             class="nav-link {{ request()->routeIs('form16.index') ? 'active' : '' }}">
                             <i class="bi bi-file-pdf"></i>
@@ -244,7 +278,9 @@
                     @endauth
                     @guest
                         <a class="nav-link" href="{{ route('administrator.login') }}">Login</a>
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        @if (Route::has('register'))
+                            <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        @endif
                     @endguest
                 </div>
             </nav>

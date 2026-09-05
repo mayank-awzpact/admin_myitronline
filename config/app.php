@@ -17,6 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Admin Self Registration
+    |--------------------------------------------------------------------------
+    |
+    | Whether /administrator/register is reachable. It must stay disabled: the
+    | register component logs the new account straight in, and every route in
+    | the "administrator" group is gated only by "auth", so anyone who signed
+    | up would land in the dashboard. Create admins from User Management
+    | instead. Only enable this briefly to bootstrap the very first account.
+    |
+    */
+
+    'admin_registration_enabled' => env('ADMIN_REGISTRATION_ENABLED', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

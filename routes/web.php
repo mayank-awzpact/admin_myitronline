@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EcaRequestController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\GuidesController;
+use App\Http\Controllers\OfficeEventController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Form16Controller;
 use App\Http\Controllers\BulkMailController;
@@ -164,6 +165,20 @@ Route::delete('delete-quiz-result/{id}', [MyitrQuizController::class, 'delete_qu
         Route::get('/edit/{id}', [GuidesController::class, 'edit'])->name('guides.edit');
         Route::put('/update/{id}', [GuidesController::class, 'update'])->name('guides.update'); // ✅ Corrected method to PUT
         Route::delete('/delete/{id}', [GuidesController::class, 'destroy'])->name('guides.destroy');
+    });
+
+
+    Route::prefix('events')->group(function () {
+        Route::get('/', [OfficeEventController::class, 'index'])->name('events.index');
+        Route::get('/create', [OfficeEventController::class, 'create'])->name('events.create');
+        Route::post('/store', [OfficeEventController::class, 'store'])->name('events.store');
+        Route::get('/edit/{id}', [OfficeEventController::class, 'edit'])->name('events.edit');
+        Route::post('/update/{id}', [OfficeEventController::class, 'update'])->name('events.update');
+        Route::post('/toggle-status/{id}', [OfficeEventController::class, 'toggleStatus'])->name('events.toggleStatus');
+        Route::delete('/delete/{id}', [OfficeEventController::class, 'destroy'])->name('events.destroy');
+        Route::post('/restore/{id}', [OfficeEventController::class, 'restore'])->name('events.restore');
+        Route::delete('/force-delete/{id}', [OfficeEventController::class, 'forceDelete'])->name('events.forceDelete');
+        Route::delete('/media/delete/{id}', [OfficeEventController::class, 'destroyMedia'])->name('events.media.destroy');
     });
 
 

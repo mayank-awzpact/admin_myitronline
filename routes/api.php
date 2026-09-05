@@ -36,8 +36,8 @@ Route::get('/getGst', [ApiController::class, 'getGst']);
 
 
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register'])->middleware('throttle:otp');
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:sensitive');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -47,13 +47,16 @@ Route::middleware('auth:api')->group(function () {
 
 Route::middleware('check.token')->group(function () {
 
-Route::post('/v1/signup', [AuthOldController::class, 'signup'])->name('v2.signup');
-Route::post('/v1/login', [AuthOldController::class, 'login'])->name('v2.login');
-Route::post('/v1/verify-otp', [AuthOldController::class, 'verifyOtp']);
-Route::post('/v1/resend-otp', [AuthOldController::class, 'resendOtp']);
-Route::post('/v1/forgetPassword', [AuthOldController::class, 'forgetPassword'])->name('v2.forgetPassword');
-Route::post('/v1/reset-password', [AuthOldController::class, 'resetPassword'])->name('v2.reset-password');
-Route::post('/v1/change-password', [AuthOldController::class, 'changePassword'])->name('v2.change-password');
+// throttle:otp on the mail-sending endpoints (5/min per IP, 2/min + 20/day per email),
+// throttle:sensitive on the credential checks. Without these the signup/OTP flow was
+// open to scripted abuse - see storage/logs/mail.log.
+Route::post('/v1/signup', [AuthOldController::class, 'signup'])->middleware('throttle:otp')->name('v2.signup');
+Route::post('/v1/login', [AuthOldController::class, 'login'])->middleware('throttle:sensitive')->name('v2.login');
+Route::post('/v1/verify-otp', [AuthOldController::class, 'verifyOtp'])->middleware('throttle:sensitive');
+Route::post('/v1/resend-otp', [AuthOldController::class, 'resendOtp'])->middleware('throttle:otp');
+Route::post('/v1/forgetPassword', [AuthOldController::class, 'forgetPassword'])->middleware('throttle:otp')->name('v2.forgetPassword');
+Route::post('/v1/reset-password', [AuthOldController::class, 'resetPassword'])->middleware('throttle:sensitive')->name('v2.reset-password');
+Route::post('/v1/change-password', [AuthOldController::class, 'changePassword'])->middleware('throttle:sensitive')->name('v2.change-password');
 Route::post('/v1/update-profile', [AuthOldController::class, 'updateProfile'])->name('v2.update-profile');
 Route::get('/v1/get-profile', [AuthOldController::class, 'getUserProfile'])->name('v2.get-profile');
 Route::post('/v1/user-logout', [AuthOldController::class, 'userLogout'])->name('v2.user-logout');
